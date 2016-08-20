@@ -57,17 +57,25 @@ class ViewController: UIViewController {
         self.view.addSubview(imageView)
         }
    
-    
    
     var timer: NSTimer?
-    
     
     @IBOutlet weak var StartBtn: UIButton!
     
     @IBOutlet weak var onPrev: UIButton!
     @IBOutlet weak var onNext: UIButton!
     @IBAction func StartBtn(sender: AnyObject){
-               if timer == nil{
+        
+        if timer == nil{
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(
+                2.0,
+                target:self,
+                selector:#selector(self.onNext(_:)),
+                userInfo:nil,
+                repeats:true
+            )
+
             
             onPrev.enabled = false;
             onNext.enabled = false;
@@ -83,17 +91,6 @@ class ViewController: UIViewController {
             
             StartBtn.setTitle("再生",forState:.Normal)
         }
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(
-            2.0,
-            target:self,
-            selector:#selector(self.onNext(_:)),
-            userInfo:nil,
-            repeats:true
-        )
-
-        
-        
     }
 
 
@@ -147,7 +144,6 @@ class ViewController: UIViewController {
 }
 
 }
-
 
 
 
