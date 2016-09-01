@@ -19,9 +19,41 @@ class ViewController: UIViewController {
     var screenWidth:CGFloat = 0
     var screenHeight:CGFloat = 0
     
+    var dispImageNo = 0
+    func displayImage(){
+        
+        let imageNameArray = [
+            
+            "Bonn.jpg",
+            "koeln.jpg",
+            "dusseldorf.jpg"
+            
+        ]
+        
+        if dispImageNo < 0 {
+            dispImageNo = 2
+        }
+        
+        
+        if dispImageNo > 2 {
+            dispImageNo = 0
+        }
+        
+        let name = imageNameArray[dispImageNo]
+        
+        let image = UIImage(named: name)
+        
+        imageView.image = image
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+       
+        let image = UIImage(named: "Bonn.jpg")
+        imageView.image = image
+
         }
     
     
@@ -39,23 +71,23 @@ class ViewController: UIViewController {
         resultViewController.dispImageNo = imageView.image
         
     }
+    
     @IBAction func unwind(segue: UIStoryboardSegue){
-        
     }
 
 
     @IBAction func onTapImage(sender: AnyObject) {
         performSegueWithIdentifier("result", sender: nil)
         
-            if(width*scale < screenWidth*2){
-            scale -= 0.2
+        if(width*scale < screenWidth*2){
+        scale -= 0.2
         }
         
         let rect:CGRect = CGRectMake(0, 0, width*scale, height*scale)
         imageView.frame = rect;
         imageView.center = CGPointMake(187.5, 333.5)
         self.view.addSubview(imageView)
-        }
+    }
    
    
     var timer: NSTimer?
@@ -65,7 +97,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var onPrev: UIButton!
     @IBOutlet weak var onNext: UIButton!
     @IBAction func StartBtn(sender: AnyObject){
-        
         if timer == nil{
             
             timer = NSTimer.scheduledTimerWithTimeInterval(
@@ -111,39 +142,9 @@ class ViewController: UIViewController {
         
         displayImage()
         
-        
     }
     
-    var dispImageNo = 0
-    
-    func displayImage(){
-        
-        let imageNameArray = [
-        
-            "Bonn.jpg",
-            "koeln.jpg",
-            "dusseldorf.jpg"
-            
-        ]
-        
-        if dispImageNo < 0 {
-            dispImageNo = 2
-        }
-        
-        
-        if dispImageNo > 2 {
-            dispImageNo = 0
-        }
-        
-        let name = imageNameArray[dispImageNo]
-        
-        let image = UIImage(named: name)
-        
-        imageView.image = image
-        
-}
-
-}
+   }
 
 
 
